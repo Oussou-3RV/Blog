@@ -1,17 +1,20 @@
 import { onMounted, onUnmounted, ref } from "vue";
 
 export function usePage() {
-    const page = ref(parseHash())
+    const hash = parseHash()
+
+    const page = ref(hash[0])
+    const param = ref(hash[1])
     
     let removeListener
 
     onMounted(()=>{
-        //permet de changer la valeur de page
+        //permet de changer la valeur de : page
         const listener = () => {
-            page.value = parseHash()
+            [page.value,param.value] = parseHash()
         }
 
-        //lorsque le # change appelle listener()
+        //lorsque le hash change: appelle listener()
         window.addEventListener('hashchange',listener)
 
         removeListener = () =>{
@@ -25,9 +28,10 @@ export function usePage() {
 
     return {
         page,
+        param,
     };
 }
-
+//return le hash actuel sans #
 function parseHash(){
-    return window.location.hash.replace("#","");
+    return window.location.hash.replace("#","").split(":");
 }

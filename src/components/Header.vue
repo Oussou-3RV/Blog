@@ -1,6 +1,6 @@
 <template>
 <header class="header">
-    <a href="#" class="header_logo">mon site</a>
+    <a href="#" class="header_logo">monSite</a>
     <nav>
         <a href="#blog" class="blog">Blog</a>
         <a href="#contact" class="contact">Contact</a>
