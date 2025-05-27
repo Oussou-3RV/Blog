@@ -6,17 +6,17 @@ export function useFetch(url){
     const state = ref('loading')
 
     watch(url,(urlValue) => {
-        fetch('url')
+        fetch(urlValue)
         .then(r =>{
             if(r.ok){
                 return r.json()
             }
         })
         .then(v => {
-            data = v;
-            state = 'idle'
+            data.value = v;
+            state.value = 'idle'
         }).catch(e => {
-            state = 'error'
+            state.value = 'error'
             throw new Error("Impossible de charger les articles depuis le serveur !");
         })
     },{immediate:true})

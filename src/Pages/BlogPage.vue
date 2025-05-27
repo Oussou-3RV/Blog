@@ -17,32 +17,30 @@
 <script setup>
 import Grid from '@/components/Grid.vue';
 import PostCard from '@/components/PostCard.vue';
-import { onMounted, ref, watch } from 'vue';
+import { useFetch } from '@/Composables/useFetch';
+import { computed, onMounted, ref, watch } from 'vue';
 
+const page = ref(1) 
 
-const state = ref('loading')
-const posts = ref([])
-const page = ref(1)
+const {state, data:posts} = useFetch(computed(() => `https://jsonplaceholder.typicode.com/posts?_limit=2&_page=${page.value}`))
+// watch(page, (p) => {
+//     state.value = 'loading'
+//     fetch("https://jsonplaceholder.typicode.com/posts?_limit=2&_page=" + p)
+//         .then(r => {
+//             if (r.ok) {
+//                 return r.json()
+//             }
 
-watch(page, (p) => {
-    state.value = 'loading'
-    console.log(page.value)
-    fetch("https://jsonplaceholder.typicode.com/posts?_limit=2&_page=" + p)
-        .then(r => {
-            if (r.ok) {
-                return r.json()
-            }
+//             throw new Error("Erreur lors du chargement des articles depuis le serveur !")
+//         })
+//         .then(data => {
+//             posts.value = data
+//             state.value = "idle"
 
-            throw new Error("Erreur lors du chargement des articles depuis le serveur !")
-        })
-        .then(data => {
-            posts.value = data
-            state.value = "idle"
-
-        }).catch(e => {
-            state.value = 'error'
-        })
-}, { immediate: true })
+//         }).catch(e => {
+//             state.value = 'error'
+//         })
+// }, { immediate: true })
 </script>
 
 <style>
