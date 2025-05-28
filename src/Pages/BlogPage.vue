@@ -4,7 +4,7 @@
         Impossible de charger les articles depuis le serveur.
     </div>
     <div v-else :aria-busy="state === 'loading'">
-        <Grid :width="300">
+        <Grid :width="500">
             <PostCard v-for="post in posts" :key="post.id" :post="post" />
         </Grid>
     </div>
@@ -23,6 +23,7 @@ import { computed, onMounted, ref, watch } from 'vue';
 const page = ref(1) 
 
 const {state, data:posts} = useFetch(computed(() => `https://jsonplaceholder.typicode.com/posts?_limit=2&_page=${page.value}`))
+
 // watch(page, (p) => {
 //     state.value = 'loading'
 //     fetch("https://jsonplaceholder.typicode.com/posts?_limit=2&_page=" + p)

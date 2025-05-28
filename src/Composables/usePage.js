@@ -9,7 +9,7 @@ export function usePage() {
     let removeListener
 
     onMounted(()=>{
-        //permet de changer la valeur de : page
+        //permet de mettre a jour la valeur de : page et param
         const listener = () => {
             [page.value,param.value] = parseHash()
         }

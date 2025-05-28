@@ -5,8 +5,12 @@ export function useFetch(url){
     const data = ref(null)
     const state = ref('loading')
 
-    watch(url,(urlValue) => {
-        fetch(urlValue)
+    watch(url, (urlValue) => {
+        fetch(urlValue, {
+            headers:{
+                'Accept':'application/json'  
+            }
+        })
         .then(r =>{
             if(r.ok){
                 return r.json()
