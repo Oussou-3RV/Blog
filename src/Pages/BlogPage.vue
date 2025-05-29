@@ -4,7 +4,7 @@
         Impossible de charger les articles depuis le serveur.
     </div>
     <div v-else :aria-busy="state === 'loading'">
-        <Grid :width="500">
+        <Grid :width="300">
             <PostCard v-for="post in posts" :key="post.id" :post="post" />
         </Grid>
     </div>

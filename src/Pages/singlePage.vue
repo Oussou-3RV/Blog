@@ -9,7 +9,7 @@
                 <button class="secondary" @click="onEdit">Editer</button>
             </p>
             <PostForm 
-                :post="post" 
+                :post="formData" 
                 v-if="formData"
                 @close="formData=null"
                 @save="onSave"/>
@@ -37,8 +37,9 @@ const onEdit = () =>{
     formData.value = structuredClone(toRaw(post.value)) //permet de cloner l'objet
 }
 
-const onSave = (newPost)=>{
-    formData.value = null,
+const onSave = (newPost) => {
+    console.log("mon new Post : "+newPost)
+    formData.value = null
     post.value = newPost
 }
 </script>
