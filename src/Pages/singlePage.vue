@@ -27,19 +27,17 @@ const props = defineProps({
     id:String
 })
 
-const isEditing = ref(false)
 const formData = ref(null) //sera utilisé pour cloner l'object que l'on veut modifier
 
-const {state, data:post} = useFetch(computed(()=> `https://jsonplaceholder.typicode.com/posts/${props.id}`))
+const {state, data:post} = useFetch(computed(() => `https://jsonplaceholder.typicode.com/posts/${props.id}`))
 const thumbnail = computed(() => `https://picsum.photos/id/${post.value.id}/800/600`)
 
 const onEdit = () =>{
-    formData.value = structuredClone(toRaw(post.value)) //permet de cloner l'objet
+    formData.value = structuredClone(toRaw(post.value)) //permet de cloner l'objet et toRaw evite que vuejs en fasse un proxi
 }
 
 const onSave = (newPost) => {
-    console.log("mon new Post : "+newPost)
-    formData.value = null
-    post.value = newPost
+   formData.value = null,
+   post.value = newPost
 }
 </script>

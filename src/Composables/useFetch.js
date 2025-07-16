@@ -11,7 +11,7 @@ export function useFetch(url){
                 'Accept':'application/json'  
             }
         })
-        .then(r =>{
+        .then(r => {
             if(r.ok){
                 return r.json()
             }

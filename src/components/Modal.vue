@@ -1,7 +1,7 @@
 <template>
-    <dialog open>
+    <dialog ref="dialog">
         <article>
-            <button aria-label="Fermer" rel="prev" @click="emits('close')"></button>
+            <button aria-label="Fermer" id="fermer" rel="prev" @click="emits('close')"></button>
             <header>
                 <h2>{{ title }}</h2>
             </header>
@@ -11,9 +11,22 @@
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue';
+
+
 const props = defineProps({
     title:String
 })
-
-const emits = defineEmits(['close'])
+const dialog = ref()
+onMounted(() => dialog.value.show())
+const emits = defineEmits('close')
 </script>
+<style>
+article{
+    padding: 1.1rem;
+}
+article #fermer{
+    padding: 1rem;
+    
+}
+</style>

@@ -16,7 +16,7 @@ const props = defineProps({
     label: String,
     typeInput : {
         type: String,
-        default: 'textarea'
+        default: 'text'
     }
 })
 
